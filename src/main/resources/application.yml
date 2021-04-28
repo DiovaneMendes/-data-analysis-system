@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: data-analysis-system
+
+server:
+  port: 9090
+
+path:
+  recording: /home/data/out/resultado.txt
+  reading: /home/data/in/
