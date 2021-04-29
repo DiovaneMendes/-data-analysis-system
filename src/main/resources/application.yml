@@ -6,5 +6,5 @@ server:
   port: 9090
 
 path:
-  recording: /home/data/out/resultado.txt
-  reading: /home/data/in/
+  recording: ${HOME}/data/out/result.done.dat
+  reading: ${HOME}/data/in/
