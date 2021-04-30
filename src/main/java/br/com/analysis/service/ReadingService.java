@@ -1,13 +1,11 @@
 package br.com.analysis.service;
 
 import br.com.analysis.configuration.AnalysiConfiguration;
-import br.com.analysis.factory.ModelFactory;
 import br.com.analysis.util.StringUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,22 +21,21 @@ public class ReadingService {
 
   private final AnalysiConfiguration configuration;
 
-  public void fileSearch() {
+  public List<Path> fileSearch() {
     try{
       var path = Paths.get(configuration.getPathReading());
 
-      Files.list(path)
+      return Files.list(path)
         .filter(StringUtil::isFileDat)
-        .map(readData())
-        .flatMap(List::stream)
-        .forEach(ModelFactory::createModels);
+        .collect(Collectors.toList());
 
     } catch (Exception ex) {
       log.error("There was an error reading the file: {}", ex.getMessage());
+      return Collections.emptyList();
     }
   }
 
-  private Function<Path, List<String>> readData() {
+  public Function<Path, List<String>> readData() {
     return (Path path) -> {
       try{
         return Files.readAllLines(path);

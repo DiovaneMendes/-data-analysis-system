@@ -13,4 +13,10 @@ public class AnalysiConfiguration {
 
   @Value("${path.recording}")
   private String pathRecording;
+
+  @Value("${batch.job}")
+  private String nameJob;
+
+  @Value("${batch.step}")
+  private String nameStep;
 }

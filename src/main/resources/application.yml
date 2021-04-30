@@ -5,6 +5,10 @@ spring:
 server:
   port: 9090
 
+batch:
+  job: analysisSyncronizationJob
+  step: analysisSyncronizationStep
+
 path:
   recording: ${HOME}/data/out/result.done.dat
   reading: ${HOME}/data/in/
