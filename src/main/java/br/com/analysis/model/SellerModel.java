@@ -11,14 +11,14 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper=false)
 public class SellerModel extends GenericModel {
-  private Long cpf;
+  private Long taxId;
   private String name;
   private BigDecimal salary;
 
   @Builder
-  public SellerModel(String id, Long cpf, String name, BigDecimal salary) {
+  public SellerModel(String id, Long taxId, String name, BigDecimal salary) {
     super(id);
-    this.cpf = cpf;
+    this.taxId = taxId;
     this.name = name;
     this.salary = salary;
   }

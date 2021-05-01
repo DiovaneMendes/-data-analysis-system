@@ -33,17 +33,17 @@ public class ModelFactory {
   }
 
   private static SellerModel seller(String data) {
-    var information = StringUtil.separatorData(data, SeparatorEnum.DATA);
+    var information = listSeparatorEnumData(data);
     return SellerModel.builder()
       .id(information.get(0))
-      .cpf(Long.parseLong(information.get(1)))
+      .taxId(Long.parseLong(information.get(1)))
       .name(information.get(2))
       .salary(BigDecimal.valueOf(Double.parseDouble(information.get(3))))
       .build();
   }
 
   private static ClientModel client(String data) {
-    var information = StringUtil.separatorData(data, SeparatorEnum.DATA);
+    var information = listSeparatorEnumData(data);
     return ClientModel.builder()
       .id(information.get(0))
       .cnpj(Long.parseLong(information.get(1)))
@@ -53,7 +53,7 @@ public class ModelFactory {
   }
 
   private static SaleModel sale(String data) {
-    var information = StringUtil.separatorData(data, SeparatorEnum.DATA);
+    var information = listSeparatorEnumData(data);
     return SaleModel.builder()
       .id(information.get(0))
       .saleCode(information.get(1))
@@ -67,7 +67,7 @@ public class ModelFactory {
     var information = StringUtil.separatorData(data, SeparatorEnum.ITEM);
 
     return information.stream()
-      .map(e -> e.split(SeparatorEnum.INFO_ITEM.getValue()))
+      .map(item -> item.split(SeparatorEnum.INFO_ITEM.getValue()))
       .map(mapItem())
       .collect(Collectors.toList());
   }
@@ -79,5 +79,9 @@ public class ModelFactory {
         .amount(Integer.valueOf(data[1]))
         .price(BigDecimal.valueOf(Double.parseDouble(data[2])))
         .build();
+  }
+
+  private static List<String> listSeparatorEnumData(String data) {
+    return StringUtil.separatorData(data, SeparatorEnum.DATA);
   }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public abstract class StringUtil {
+public class StringUtil {
 
   private static final String REGEX_ID = "\\D*(\\d*).*";
   private static final String REGEX_REMOVE_BRACKET = "\\*?\\]|\\*?\\[";
@@ -22,8 +22,8 @@ public abstract class StringUtil {
       .collect(Collectors.toList());
   }
 
-  public static String removeBrackets(String dado) {
-    return dado.replaceAll(REGEX_REMOVE_BRACKET, "");
+  public static String removeBrackets(String data) {
+    return data.replaceAll(REGEX_REMOVE_BRACKET, "");
   }
 
   public static Boolean isFileDat(Path path) {

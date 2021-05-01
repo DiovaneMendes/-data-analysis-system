@@ -20,7 +20,7 @@ public class RecordingService {
       var path = Path.of(configuration.getPathRecording());
       Files.write(path, report.getBytes());
     } catch (Exception ex) {
-      log.error("There was an error saving the file: ".concat(ex.getMessage()));
+      log.error("There was an error saving the file: {}", ex.getMessage());
     }
   }
 }

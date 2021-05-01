@@ -24,22 +24,22 @@ public class BatchConfiguration {
 
   private final AnalysisReader analysisReader;
   private final AnalysisWriter analysisWriter;
-  private final AnalysiConfiguration analysiConfig;
   private final AnalysisProcessor analysisProcessor;
   private final JobBuilderFactory jobBuilderFactory;
   private final StepBuilderFactory stepBuilderFactory;
+  private final AnalysiConfiguration analysiConfiguration;
 
   @Bean
   public Job analysisSyncronizationJob() {
     return jobBuilderFactory
-            .get(analysiConfig.getNameJob())
+            .get(analysiConfiguration.getNameJob())
             .start(analysisSyncronizationStep())
             .build();
   }
 
   @Bean
   public Step analysisSyncronizationStep() {
-    var stepName = analysiConfig.getNameStep();
+    var stepName = analysiConfiguration.getNameStep();
     log.info("Initializing step {}", stepName);
 
     return stepBuilderFactory
