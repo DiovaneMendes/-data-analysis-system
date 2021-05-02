@@ -1,6 +1,5 @@
 package br.com.analysis.batch.writer;
 
-import br.com.analysis.configuration.AnalysiConfiguration;
 import br.com.analysis.model.ClientModel;
 import br.com.analysis.model.SaleModel;
 import br.com.analysis.model.SellerModel;
@@ -11,38 +10,31 @@ import br.com.analysis.service.RecordingService;
 import br.com.analysis.stub.AnalysiConfigurationStub;
 import br.com.analysis.stub.ReportModelStub;
 import br.com.analysis.stub.StringStub;
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Spy;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.util.ReflectionTestUtils;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertLinesMatch;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doCallRealMethod;
-import static org.mockito.Mockito.when;
 
 @DisplayName("AnalysisWriter")
 public class AnalysisWriterTest {
 
+  private Path path;
+  @TempDir Path tempPath;
   private AnalysisWriter analysisWriter;
 
   @BeforeEach
   void setup() {
-    var recordingService = new RecordingService(AnalysiConfigurationStub.config());
+    path = tempPath.resolve("resolv.done.dat");
+    var recordingService = new RecordingService(AnalysiConfigurationStub.config(path));
     analysisWriter = new AnalysisWriter(recordingService);
   }
 
@@ -57,16 +49,11 @@ public class AnalysisWriterTest {
       analysisWriter.write(parametro);
     }
 
-    @AfterEach
-    void after() {
-      (new File("src/test/resources/out/result.done.dat")).delete();
-    }
-
     @Test
     @DisplayName("Deve gravar arquivo 'result.done.dat' com relatório")
     void deveGravarArquivoComRelatorio() throws IOException {
       var esperado = StringStub.conteudoRelatorio();
-      assertEquals(esperado, resultado());
+      assertLinesMatch(esperado, Files.readAllLines(path));
     }
 
     @Test
@@ -89,22 +76,6 @@ public class AnalysisWriterTest {
       var result = SaleRepository.getInstance().getAll().isEmpty();
       assertTrue(result);
     }
-  }
-
-  private List<String> resultado() throws IOException {
-    var path = Paths.get("src/test/resources/out/");
-
-    return Files.list(path)
-      .map(p -> {
-        try {
-          return Files.readAllLines(p);
-        } catch (IOException e) {
-          return null;
-        }
-      })
-      .filter(Objects::nonNull)
-      .flatMap(List::stream)
-      .collect(Collectors.toList());
   }
 
   private void popularRepositorios() {
