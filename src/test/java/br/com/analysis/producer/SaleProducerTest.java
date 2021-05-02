@@ -67,10 +67,10 @@ public class SaleProducerTest {
       }
 
       @Test
-      @DisplayName("Deve gerar Exception com a mensagem: 'Error when looking for more expensive sale.'")
-      void deveGerarException() {
+      @DisplayName("Deve gerar SaleException com a mensagem: 'Error when looking for more expensive sale.'")
+      void deveGerarSaleException() {
         assertThatThrownBy(() -> saleProducer.monstExpensiveSale())
-          .isInstanceOf(Exception.class)
+          .isInstanceOf(SaleException.class)
           .hasMessage("Error when looking for more expensive sale.");
       }
     }
@@ -124,10 +124,10 @@ public class SaleProducerTest {
       }
 
       @Test
-      @DisplayName("Deve gerar Exception com a mensagem: 'Error fetching the worst seller.'")
-      void deveGerarException() {
+      @DisplayName("Deve gerar SaleException com a mensagem: 'Error fetching the worst seller.'")
+      void deveGerarSaleException() {
         assertThatThrownBy(() -> saleProducer.worstSeller())
-          .isInstanceOf(Exception.class)
+          .isInstanceOf(SaleException.class)
           .hasMessage("Error fetching the worst seller.");
       }
     }

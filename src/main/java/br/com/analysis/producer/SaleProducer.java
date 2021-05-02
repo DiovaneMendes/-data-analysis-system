@@ -29,7 +29,7 @@ public class SaleProducer {
     return sales.stream()
       .map(saleCode(map))
       .findFirst()
-      .orElseThrow(() -> new Exception("Error when looking for more expensive sale."));
+      .orElseThrow(() -> new SaleException("Error when looking for more expensive sale."));
   }
 
   private Map<String, BigDecimal> informationSale(Set<SaleModel> sales, ReportEnum reportEnum) {
@@ -63,7 +63,7 @@ public class SaleProducer {
     return sales.stream()
       .map(sellerName(map))
       .findFirst()
-      .orElseThrow(() -> new Exception("Error fetching the worst seller."));
+      .orElseThrow(() -> new SaleException("Error fetching the worst seller."));
   }
 
   private Function<SaleModel, String> sellerName(Map<String, BigDecimal> map) {
