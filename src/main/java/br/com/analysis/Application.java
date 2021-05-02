@@ -25,7 +25,7 @@ public class Application {
 	private final BatchConfiguration batchConfig;
 	private final AnalysiConfiguration analysiConfig;
 
-	public static void main(String[] args) {
+	public static void main(String... args) {
 		SpringApplication.run(Application.class, args);
 	}
 

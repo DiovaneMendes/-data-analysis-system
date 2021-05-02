@@ -1,12 +1,15 @@
 package br.com.analysis.util;
 
 import br.com.analysis.enuns.SeparatorEnum;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StringUtil {
 
   private static final String REGEX_ID = "\\D*(\\d*).*";

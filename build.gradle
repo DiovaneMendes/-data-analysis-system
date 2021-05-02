@@ -1,5 +1,8 @@
 plugins {
 	id 'java'
+	id 'jacoco'
+	id 'org.sonarqube' version '3.2.0'
+	id 'info.solidsoft.pitest' version '1.5.1'
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
@@ -30,4 +33,32 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	finalizedBy jacocoTestReport
+}
+
+jacoco {
+	toolVersion = "0.8.6"
+	reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
+jacocoTestReport {
+	reports {
+		xml.enabled true
+		csv.enabled false
+		html.destination layout.buildDirectory.dir('jacocoHtml').get().asFile
+	}
+}
+
+sonarqube {
+	properties {
+		property "sonar.exclusions", [
+				"**/model/**"
+		]
+	}
+}
+
+pitest {
+	junit5PluginVersion = '0.12'
+	excludedClasses = [ 'br.com.analysis.model.*' ]
+	excludedTestClasses = [ '**AnalysisProcessorTest' ]
 }

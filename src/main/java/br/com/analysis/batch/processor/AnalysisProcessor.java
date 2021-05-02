@@ -1,8 +1,8 @@
 package br.com.analysis.batch.processor;
 
-import br.com.analysis.producer.SaleProducer;
 import br.com.analysis.factory.ModelFactory;
 import br.com.analysis.model.ReportModel;
+import br.com.analysis.producer.SaleProducer;
 import br.com.analysis.repository.ClientRepository;
 import br.com.analysis.repository.SellerRepository;
 import lombok.RequiredArgsConstructor;

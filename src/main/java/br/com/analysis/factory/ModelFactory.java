@@ -1,6 +1,7 @@
 package br.com.analysis.factory;
 
 import br.com.analysis.enuns.SeparatorEnum;
+import br.com.analysis.exception.FactoryException;
 import br.com.analysis.model.ClientModel;
 import br.com.analysis.model.ItemModel;
 import br.com.analysis.model.SaleModel;
@@ -9,6 +10,8 @@ import br.com.analysis.repository.ClientRepository;
 import br.com.analysis.repository.SaleRepository;
 import br.com.analysis.repository.SellerRepository;
 import br.com.analysis.util.StringUtil;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 
 import java.math.BigDecimal;
@@ -16,6 +19,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ModelFactory {
 
   @SneakyThrows
@@ -28,7 +32,7 @@ public class ModelFactory {
       case "003": SaleRepository.getInstance().add(sale(data));
         break;
       default:
-        throw new Exception("Could not generate the model: ".concat(data));
+        throw new FactoryException(data);
     }
   }
 

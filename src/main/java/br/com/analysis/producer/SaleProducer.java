@@ -19,7 +19,7 @@ public class SaleProducer {
   private final Set<SaleModel> sales;
 
   public SaleProducer() {
-    this.sales = SaleRepository.getInstance().getAll();;
+    this.sales = SaleRepository.getInstance().getAll();
   }
 
   @SneakyThrows
@@ -77,13 +77,13 @@ public class SaleProducer {
   }
 
   private Function<Collection<BigDecimal>, BigDecimal> typeReport(ReportEnum reportEnum) {
-    return (collection) -> (reportEnum == WORST_SELLER)
+    return (Collection<BigDecimal> collection) -> (reportEnum == WORST_SELLER)
       ? Collections.min(collection)
       : Collections.max(collection);
   }
 
   private Function<BigDecimal, String> getAttribute(Map<String, BigDecimal> map) {
-    return (bigDecimal) -> map.entrySet()
+    return (BigDecimal bigDecimal) -> map.entrySet()
       .stream()
       .filter(m -> m.getValue().equals(bigDecimal))
       .findFirst()

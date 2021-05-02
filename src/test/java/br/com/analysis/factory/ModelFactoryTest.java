@@ -1,5 +1,6 @@
 package br.com.analysis.factory;
 
+import br.com.analysis.exception.FactoryException;
 import br.com.analysis.repository.ClientRepository;
 import br.com.analysis.repository.SaleRepository;
 import br.com.analysis.repository.SellerRepository;
@@ -101,7 +102,7 @@ public class ModelFactoryTest {
         var mensagem = "Could not generate the model: ".concat(parametro);
 
         assertThatThrownBy(() -> ModelFactory.createModels(parametro))
-          .isInstanceOf(Exception.class)
+          .isInstanceOf(FactoryException.class)
           .hasMessage(mensagem);
       }
     }
