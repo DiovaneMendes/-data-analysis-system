@@ -1,53 +1,49 @@
 package br.com.analysis.service;
 
 import br.com.analysis.configuration.AnalysiConfiguration;
+import br.com.analysis.stub.AnalysiConfigurationStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.junit.jupiter.api.io.TempDir;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
 @DisplayName("RecordingService")
-@ExtendWith(SpringExtension.class)
 public class RecordingServiceTest {
 
-  @Mock private AnalysiConfiguration analysiConfiguration;
-  @InjectMocks private RecordingService recordingService;
+  @TempDir Path tempPath;
+  private Path path;
+  private AnalysiConfiguration analysiConfiguration;
+  private RecordingService recordingService;
+
+  @BeforeEach
+  void setup() {
+    path = tempPath.resolve("teste.dat");
+    recordingService = new RecordingService(AnalysiConfigurationStub.config(path));
+  }
 
   @Nested
   @DisplayName("Dado que o método [recordingReport] seja chamado...")
   class ChamadaRecordingReport {
 
-    @BeforeEach
-    void setup() {
-      when(analysiConfiguration.getPathRecording()).thenReturn("src/test/resources/out/teste.dat");
-    }
-
     @Test
-    @DisplayName("Deve criar arquivo no diretório")
+    @DisplayName("Deve criar arquivo no diretório com dado igual ao passado por parametro")
     void deveCriarArquivo() throws IOException {
-      var diretorioOut = "src/test/resources/out/teste.dat";
-      var parametro = "TESTE";
-      var esperado = Paths.get(diretorioOut);
+      var parametro = "TESTE GRAVACAO";
+      var esperado = List.of(parametro);
 
       recordingService.recordingReport(parametro);
 
-      var resultado = Files.list(Paths.get("src/test/resources/out/")).findFirst().get();
+      var resultado = Files.readAllLines(path);
 
       assertEquals(esperado, resultado);
-
-      (new File(diretorioOut)).delete();
     }
   }
 }
