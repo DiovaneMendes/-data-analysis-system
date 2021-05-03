@@ -1,14 +1,13 @@
 package br.com.analysis.util;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import static br.com.analysis.enuns.SeparatorEnum.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.nio.file.Paths;
 import java.util.List;
-
-import static br.com.analysis.enuns.SeparatorEnum.*;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.Test;
 
 @DisplayName("StringUtil")
 public class StringUtilTest {

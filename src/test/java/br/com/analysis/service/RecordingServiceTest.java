@@ -1,19 +1,18 @@
 package br.com.analysis.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import br.com.analysis.configuration.AnalysiConfiguration;
 import br.com.analysis.stub.AnalysiConfigurationStub;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("RecordingService")
 public class RecordingServiceTest {

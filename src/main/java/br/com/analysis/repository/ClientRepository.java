@@ -1,7 +1,6 @@
 package br.com.analysis.repository;
 
 import br.com.analysis.model.ClientModel;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;

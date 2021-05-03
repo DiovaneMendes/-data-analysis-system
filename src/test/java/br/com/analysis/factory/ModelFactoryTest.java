@@ -1,5 +1,8 @@
 package br.com.analysis.factory;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import br.com.analysis.exception.FactoryException;
 import br.com.analysis.repository.ClientRepository;
 import br.com.analysis.repository.SaleRepository;
@@ -8,15 +11,11 @@ import br.com.analysis.stub.ClientModelStub;
 import br.com.analysis.stub.SaleModelStub;
 import br.com.analysis.stub.SellerModelStub;
 import br.com.analysis.stub.StringStub;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import java.util.Set;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("ModelFactory")
 public class ModelFactoryTest {
@@ -96,14 +95,15 @@ public class ModelFactoryTest {
     class ComecoDiferente {
 
       @Test
-      @DisplayName("Deve gerar Exception com a mensagem: 'Could not generate the model: ' mais a string passada")
+      @DisplayName(
+          "Deve gerar Exception com a mensagem: 'Could not generate the model: ' mais a string passada")
       void adicionarSellerRepository() {
         var parametro = StringStub.comecoDiferente();
         var mensagem = "Could not generate the model: ".concat(parametro);
 
         assertThatThrownBy(() -> ModelFactory.createModels(parametro))
-          .isInstanceOf(FactoryException.class)
-          .hasMessage(mensagem);
+            .isInstanceOf(FactoryException.class)
+            .hasMessage(mensagem);
       }
     }
   }

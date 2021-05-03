@@ -21,23 +21,24 @@ import org.springframework.scheduling.annotation.Scheduled;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class Application {
 
-	private final JobLauncher jobLauncher;
-	private final BatchConfiguration batchConfig;
-	private final AnalysiConfiguration analysiConfig;
+  private final JobLauncher jobLauncher;
+  private final BatchConfiguration batchConfig;
+  private final AnalysiConfiguration analysiConfig;
 
-	public static void main(String... args) {
-		SpringApplication.run(Application.class, args);
-	}
+  public static void main(String... args) {
+    SpringApplication.run(Application.class, args);
+  }
 
-	@SneakyThrows
-	@Scheduled(fixedDelay = 3000)
-	public void executeProcedure() {
-		log.info("### Executing procedure ###");
+  @SneakyThrows
+  @Scheduled(fixedDelay = 3000)
+  public void executeProcedure() {
+    log.info("### Executing procedure ###");
 
-		var params = new JobParametersBuilder()
-			.addString(analysiConfig.getNameJob(), String.valueOf(System.currentTimeMillis()))
-			.toJobParameters();
+    var params =
+        new JobParametersBuilder()
+            .addString(analysiConfig.getNameJob(), String.valueOf(System.currentTimeMillis()))
+            .toJobParameters();
 
-		jobLauncher.run(batchConfig.analysisSyncronizationJob(), params);
-	}
+    jobLauncher.run(batchConfig.analysisSyncronizationJob(), params);
+  }
 }

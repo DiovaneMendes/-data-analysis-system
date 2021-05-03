@@ -1,11 +1,11 @@
 package br.com.analysis.enuns;
 
+import static br.com.analysis.enuns.SeparatorEnum.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-
-import static br.com.analysis.enuns.SeparatorEnum.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("SeparatorEnum")
 public class SeparatorEnumTest {

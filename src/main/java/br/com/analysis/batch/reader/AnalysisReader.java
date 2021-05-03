@@ -1,12 +1,11 @@
 package br.com.analysis.batch.reader;
 
 import br.com.analysis.service.ReadingService;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -32,8 +31,8 @@ public class AnalysisReader implements ItemReader<List<String>> {
     listSize = sizePathList;
 
     return pathList.stream()
-      .map(readingService.readData())
-      .flatMap(List::stream)
-      .collect(Collectors.toList());
+        .map(readingService.readData())
+        .flatMap(List::stream)
+        .collect(Collectors.toList());
   }
 }

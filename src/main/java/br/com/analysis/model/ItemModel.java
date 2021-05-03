@@ -1,15 +1,14 @@
 package br.com.analysis.model;
 
+import java.math.BigDecimal;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class ItemModel extends GenericModel {
   private Integer amount;
   private BigDecimal price;

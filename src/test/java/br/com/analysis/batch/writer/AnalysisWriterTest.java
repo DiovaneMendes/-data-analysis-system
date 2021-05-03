@@ -1,5 +1,8 @@
 package br.com.analysis.batch.writer;
 
+import static org.junit.jupiter.api.Assertions.assertLinesMatch;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import br.com.analysis.model.ClientModel;
 import br.com.analysis.model.SaleModel;
 import br.com.analysis.model.SellerModel;
@@ -10,19 +13,15 @@ import br.com.analysis.service.RecordingService;
 import br.com.analysis.stub.AnalysiConfigurationStub;
 import br.com.analysis.stub.ReportModelStub;
 import br.com.analysis.stub.StringStub;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertLinesMatch;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("AnalysisWriter")
 public class AnalysisWriterTest {

@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'jacoco'
 	id 'org.sonarqube' version '3.2.0'
+	id 'com.diffplug.spotless' version '5.7.0'
 	id 'info.solidsoft.pitest' version '1.5.1'
 	id 'org.springframework.boot' version '2.4.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -29,6 +30,15 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+spotless{
+	enforceCheck true
+	java{
+		importOrder "br.com.analysis", "java", "javax"
+		googleJavaFormat()
+		removeUnusedImports()
+	}
 }
 
 test {

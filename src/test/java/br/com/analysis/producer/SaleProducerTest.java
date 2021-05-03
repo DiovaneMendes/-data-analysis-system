@@ -1,5 +1,9 @@
 package br.com.analysis.producer;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import br.com.analysis.exception.SaleException;
 import br.com.analysis.repository.SaleRepository;
 import br.com.analysis.stub.SaleModelStub;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,9 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("SaleProducer")
 @ExtendWith(SpringExtension.class)
@@ -67,11 +68,12 @@ public class SaleProducerTest {
       }
 
       @Test
-      @DisplayName("Deve gerar SaleException com a mensagem: 'Error when looking for more expensive sale.'")
+      @DisplayName(
+          "Deve gerar SaleException com a mensagem: 'Error when looking for more expensive sale.'")
       void deveGerarSaleException() {
         assertThatThrownBy(() -> saleProducer.monstExpensiveSale())
-          .isInstanceOf(SaleException.class)
-          .hasMessage("Error when looking for more expensive sale.");
+            .isInstanceOf(SaleException.class)
+            .hasMessage("Error when looking for more expensive sale.");
       }
     }
   }
@@ -127,8 +129,8 @@ public class SaleProducerTest {
       @DisplayName("Deve gerar SaleException com a mensagem: 'Error fetching the worst seller.'")
       void deveGerarSaleException() {
         assertThatThrownBy(() -> saleProducer.worstSeller())
-          .isInstanceOf(SaleException.class)
-          .hasMessage("Error fetching the worst seller.");
+            .isInstanceOf(SaleException.class)
+            .hasMessage("Error fetching the worst seller.");
       }
     }
   }

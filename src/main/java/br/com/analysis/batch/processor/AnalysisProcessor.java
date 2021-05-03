@@ -5,12 +5,11 @@ import br.com.analysis.model.ReportModel;
 import br.com.analysis.producer.SaleProducer;
 import br.com.analysis.repository.ClientRepository;
 import br.com.analysis.repository.SellerRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemProcessor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Slf4j
 @Component
@@ -26,10 +25,10 @@ public class AnalysisProcessor implements ItemProcessor<List<String>, ReportMode
     data.forEach(ModelFactory::createModels);
 
     return ReportModel.builder()
-      .amountClient(ClientRepository.getInstance().getAll().size())
-      .amountSeller(SellerRepository.getInstance().getAll().size())
-      .idSaleExpensive(saleProducer.monstExpensiveSale())
-      .worstSeller(saleProducer.worstSeller())
-      .build();
+        .amountClient(ClientRepository.getInstance().getAll().size())
+        .amountSeller(SellerRepository.getInstance().getAll().size())
+        .idSaleExpensive(saleProducer.monstExpensiveSale())
+        .worstSeller(saleProducer.worstSeller())
+        .build();
   }
 }

@@ -1,5 +1,7 @@
 package br.com.analysis.configuration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -9,16 +11,14 @@ import org.mockito.InjectMocks;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @ExtendWith(SpringExtension.class)
 @DisplayName("AnalysiConfiguration")
 public class AnalysiConfigurationTest {
 
   private static final String PATH_READING = "/teste/in",
-    PATH_RECORDING = "/teste/out",
-    NAME_JOB = "BATCH_JOB",
-    NAME_STEP = "BATCH_STEP";
+      PATH_RECORDING = "/teste/out",
+      NAME_JOB = "BATCH_JOB",
+      NAME_STEP = "BATCH_STEP";
 
   @InjectMocks private AnalysiConfiguration analysiConfiguration;
 

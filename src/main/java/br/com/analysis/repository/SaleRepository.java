@@ -1,12 +1,11 @@
 package br.com.analysis.repository;
 
 import br.com.analysis.model.SaleModel;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class SaleRepository implements Repository<SaleModel>{
+public class SaleRepository implements Repository<SaleModel> {
 
   private final Set<SaleModel> sales;
   private static SaleRepository instance = null;

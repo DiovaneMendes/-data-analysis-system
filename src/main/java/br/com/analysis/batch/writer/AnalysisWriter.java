@@ -5,12 +5,11 @@ import br.com.analysis.repository.ClientRepository;
 import br.com.analysis.repository.SaleRepository;
 import br.com.analysis.repository.SellerRepository;
 import br.com.analysis.service.RecordingService;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Slf4j
 @Component
@@ -33,14 +32,14 @@ public class AnalysisWriter implements ItemWriter<ReportModel> {
 
   private String dataReport(ReportModel report) {
     return String.format(
-      "Quantidade de clientes: %s \n" +
-      "Quantidade de vendedores: %s \n" +
-      "ID venda mais cara: %s \n" +
-      "Pior vendedor: %s",
-      report.getAmountClient(),
-      report.getAmountSeller(),
-      report.getIdSaleExpensive(),
-      report.getWorstSeller());
+        "Quantidade de clientes: %s \n"
+            + "Quantidade de vendedores: %s \n"
+            + "ID venda mais cara: %s \n"
+            + "Pior vendedor: %s",
+        report.getAmountClient(),
+        report.getAmountSeller(),
+        report.getIdSaleExpensive(),
+        report.getWorstSeller());
   }
 
   public void clearRepositorys() {

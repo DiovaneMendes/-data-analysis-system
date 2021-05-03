@@ -1,13 +1,12 @@
 package br.com.analysis.util;
 
 import br.com.analysis.enuns.SeparatorEnum;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class StringUtil {
@@ -21,8 +20,7 @@ public class StringUtil {
   }
 
   public static List<String> separatorData(String data, SeparatorEnum separatorEnum) {
-    return Stream.of(data.split(separatorEnum.getValue()))
-      .collect(Collectors.toList());
+    return Stream.of(data.split(separatorEnum.getValue())).collect(Collectors.toList());
   }
 
   public static String removeBrackets(String data) {
