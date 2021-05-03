@@ -41,5 +41,3 @@ volumes:
   sonarqube_temp:
   postgresql:
   postgresql_data:
-
-    ## data-analysis-system
