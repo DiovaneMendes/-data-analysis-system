@@ -1,10 +1,8 @@
 package br.com.analysis.util;
 
-import static br.com.analysis.enuns.SeparatorEnum.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.nio.file.Paths;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -35,49 +33,6 @@ public class StringUtilTest {
       @DisplayName("Deve retornar string vazia")
       void deveRetornarStringVazia() {
         assertEquals("", StringUtil.getIdentifier("diotesteçregex"));
-      }
-    }
-  }
-
-  @Nested
-  @DisplayName("Dado que o método [separatorData] seja chamado...")
-  class ChamadaSeparatorData {
-
-    private final String parametro = "testeçpleno,[789,123]-tesouraç-caneta01";
-
-    @Nested
-    @DisplayName("Dado que o SeparatorEnum passado seja 'DATA'...")
-    class SeparatorData {
-
-      @Test
-      @DisplayName("Deve retornar uma lista de string separadas por 'ç'")
-      void deveRetornarListaStringCedilha() {
-        var resultado = List.of("teste", "pleno,[789,123]-tesoura", "-caneta01");
-        assertEquals(resultado, StringUtil.separatorData(parametro, DATA));
-      }
-    }
-
-    @Nested
-    @DisplayName("Dado que o SeparatorEnum passado seja 'ITEM'...")
-    class SeparatorItem {
-
-      @Test
-      @DisplayName("Deve retornar uma lista de string separadas por ','")
-      void deveRetornarListaStringVirgula() {
-        var resultado = List.of("testeçpleno", "[789", "123]-tesouraç-caneta01");
-        assertEquals(resultado, StringUtil.separatorData(parametro, ITEM));
-      }
-    }
-
-    @Nested
-    @DisplayName("Dado que o SeparatorEnum passado seja 'INFO_ITEM'...")
-    class SeparatorInfoItem {
-
-      @Test
-      @DisplayName("Deve retornar uma lista de string separadas por '-'")
-      void deveRetornarListaStringTraco() {
-        var resultado = List.of("testeçpleno,[789,123]", "tesouraç", "caneta01");
-        assertEquals(resultado, StringUtil.separatorData(parametro, INFO_ITEM));
       }
     }
   }
