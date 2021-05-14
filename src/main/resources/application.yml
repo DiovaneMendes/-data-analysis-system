@@ -10,5 +10,5 @@ batch:
   step: analysisSyncronizationStep
 
 path:
-  recording: ${HOME}/data/out/report.done.dat
-  reading: ${HOME}/data/in/
+  recording: ${HOMEPATH}/data/out/report.done.dat
+  reading: ${HOMEPATH}/data/in/
